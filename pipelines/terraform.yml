@@ -15,6 +15,6 @@ pipelines:
             type: manual
           jobs:
             ansible:
-              tasks:
-              - exec: {command: ansible-playbook, terraform, arguments: [ "-i", "107.22.121.182" "tools.yml", "-e", "tool_name=prometheus", "-e", "ansible_user=ec2-user", "-e", "ansible_password=DevOps321" ], run_if: passed}
+            tasks:
+            - exec: {command: ansible-playbook, terraform, arguments: [ "-i", "107.22.121.182" "tools.yml", "-e", "tool_name=prometheus", "-e", "ansible_user=ec2-user", "-e", "ansible_password=DevOps321" ], run_if: passed}
 
