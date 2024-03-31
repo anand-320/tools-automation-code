@@ -10,9 +10,9 @@
     dest: /etc/systemd/system/prometheus.service
 
 
-- name: start prometheus service
+- name: Start Prometheus Service
   ansible.builtin.systemd_service:
     name: prometheus
-    status: restarted
+    state: restarted
     enabled: yes
     daemon-reload: yes
