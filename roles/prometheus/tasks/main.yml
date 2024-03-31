@@ -7,7 +7,7 @@
 - name: copy prometheus
   ansible.builtin.template:
     src: prometheus.service
-    dest: /ect/systemd/system/prometheus.service
+    dest: /etc/systemd/system/prometheus.service
 
 
 - name: start prometheus service
