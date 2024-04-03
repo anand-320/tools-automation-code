@@ -18,7 +18,7 @@ resource "aws_route53_record" "record" {
 }
 
 resource "aws_iam_role" "role" {
-  name = "$(var.tool_name)-role"
+  name = "${var.tool_name}-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -35,7 +35,7 @@ resource "aws_iam_role" "role" {
   })
 
   inline_policy {
-    name = "$(var.tool_name)-inline-policy"
+    name = "${var.tool_name}-inline-policy"
 
     policy = jsonencode({
       Version = "2012-10-17"
@@ -50,11 +50,11 @@ resource "aws_iam_role" "role" {
   }
 
   tags = {
-    Name = "$(var.tool_name)-role"
+    Name = "${var.tool_name}-role"
   }
 }
 
 resource "aws_iam_instance_profile" "instance_profile" {
-  name = "$(var.tool_name)-role"
+  name = "${var.tool_name}-role"
   role = aws_iam_role.role.name
 }
