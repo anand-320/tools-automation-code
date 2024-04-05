@@ -3,6 +3,10 @@ variable "tools" {
     prometheus = {
       instance_type        = "t3.micro"
       policy_resource_list = ["ec2:DescribeInstance"]
+
+      grafana = {
+        instance_type        = "t3.micro"
+        policy_resource_list = ["ec2:DescribeInstance"]
     }
   }
 }
