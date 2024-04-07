@@ -57,14 +57,13 @@ resource "aws_iam_role" "role" {
       Version = "2012-10-17"
       Statement = [
         {
-          Action   = concat(var.dummy_policy, var.policy_resource_list)
+          Action   = var.policy_resource_list
           Effect   = "Allow"
           Resource = "*"
         },
       ]
     })
   }
-
 
   tags = {
     Name = "${var.tool_name}-role"
