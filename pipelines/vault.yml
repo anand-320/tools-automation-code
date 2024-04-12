@@ -1,6 +1,6 @@
 format_version: 10
 pipelines:
-  grafana:
+  vault:
     group: tools
     materials:
       git-4f9022f:
