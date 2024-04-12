@@ -56,6 +56,7 @@ resource "aws_iam_role" "role" {
     ]
   })
 
+
   inline_policy {
     name = "${var.tool_name}-inline-policy"
 
