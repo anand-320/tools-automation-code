@@ -13,7 +13,7 @@ resource "aws_instance" "instance" {
   }
 
   tags = {
-    Name = var.tool_name
+    Name    = var.tool_name
   }
 
   lifecycle {
@@ -43,12 +43,12 @@ resource "aws_iam_role" "role" {
   name = "${var.tool_name}-role"
 
   assume_role_policy = jsonencode({
-    Version   = "2012-10-17"
+    Version = "2012-10-17"
     Statement = [
       {
-        Action    = "sts:AssumeRole"
-        Effect    = "Allow"
-        Sid       = ""
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Sid    = ""
         Principal = {
           Service = "ec2.amazonaws.com"
         }
@@ -56,11 +56,12 @@ resource "aws_iam_role" "role" {
     ]
   })
 
+
   inline_policy {
     name = "${var.tool_name}-inline-policy"
 
     policy = jsonencode({
-      Version   = "2012-10-17"
+      Version = "2012-10-17"
       Statement = [
         {
           Action   = concat(var.dummy_policy, var.policy_resource_list)
@@ -77,6 +78,6 @@ resource "aws_iam_role" "role" {
 }
 
 resource "aws_iam_instance_profile" "instance_profile" {
-  name = "${var.tool_name}-instance-profile"
+  name = "${var.tool_name}-role"
   role = aws_iam_role.role.name
 }
