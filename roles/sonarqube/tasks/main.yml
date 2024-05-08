@@ -1,38 +1,76 @@
-- name: set name in prompt
+#- name: set name in prompt
+#  ansible.builtin.shell: set-prompt sonarqube
+#
+#- name: Add Sonarqube user
+#  ansible.builtin.user:
+#    name: sonar
+#
+#
+#- name: install java
+#  ansible.builtin.dnf:
+#    name: java-17-openjdk
+#    state: installed
+#
+#- name: create sonarqube directory
+#  ansible.builtin.file:
+#    path: /opt/sonarqube
+#    state: directory
+#    owner: sonar
+#    group: sonar
+#
+#- name: download sonarqube
+#  ansible.builtin.unarchive:
+#    src: https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.5.1.90531.zip
+#    dest: /opt/sonarqube
+#    remote_src: yes
+#  become_user: sonar
+#
+#- name: setup service file
+#  ansible.builtin.template:
+#    src: sonarqube.service
+#    dest: /etc/systemd/system/sonarqube.service
+#
+#- name: start sonarqube
+#  ansible.builtin.systemd_service:
+#    name: sonarqube
+#    state: started
+#    enabled: yes
+#    daemon_reload: yes
+
+- name: Set Prompt
   ansible.builtin.shell: set-prompt sonarqube
 
-- name: Add Sonarqube user
+- name: Add sonarqube user
   ansible.builtin.user:
     name: sonar
 
-
-- name: install java
+- name: Install Java
   ansible.builtin.dnf:
     name: java-17-openjdk
     state: installed
 
-- name: create sonarqube directory
+- name: Create Sonarqube directory
   ansible.builtin.file:
     path: /opt/sonarqube
     state: directory
     owner: sonar
     group: sonar
 
-- name: download sonarqube
+- name: Download Sonarqube
   ansible.builtin.unarchive:
-    src: https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.5.1.90531.zip
+    src: https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.5.0.89998.zip
     dest: /opt/sonarqube
     remote_src: yes
   become_user: sonar
 
-- name: setup service file
+- name: Setup service file
   ansible.builtin.template:
     src: sonarqube.service
     dest: /etc/systemd/system/sonarqube.service
 
-- name: start sonarqube
+- name: Start Sonarqube
   ansible.builtin.systemd_service:
     name: sonarqube
     state: started
     enabled: yes
-    daemon_reload: yes
+    daemon-reload: yes
