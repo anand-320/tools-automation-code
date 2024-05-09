@@ -24,5 +24,3 @@
   become_user: ec2-user
 
 
-# install runner will take manually
-
