@@ -5,6 +5,7 @@
   ansible.builtin.template:
     src: jfrog.repo
     dest: /etc/yum.repos.d/jfrog-artifactory-rpms.repo
+    remote_src: yes
 
 - name: install jfrog
   ansible.builtin.dnf:
