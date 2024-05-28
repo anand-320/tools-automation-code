@@ -21,13 +21,13 @@
     src: node-exporter.json
     dest: /tmp/node-exporter.json
 
-- name: Create a folder
-  community.grafana.grafana_folder:
-    url: http://localhost:3000
-    grafana_user: "admin" #"{{secrets.grafana_user}}"
-    grafana_password: "admin123" #"{{secrets.grafana_password}}"
-    title: "ProjectDashboards"
-    state: present
+#- name: Create a folder
+#  community.grafana.grafana_folder:
+#    url: http://localhost:3000
+#    grafana_user: "admin" #"{{secrets.grafana_user}}"
+#    grafana_password: "admin123" #"{{secrets.grafana_password}}"
+#    title: "ProjectDashboards"
+#    state: present
 
 - name: import grafana dashboard from node exporter
   community.grafana.grafana_dashboard:
@@ -39,7 +39,7 @@
     commit_message: Update by ansible
     overwrite: true
     path: /tmp/node-exporter.json
-    folder: ProjectDashboards
+    #folder: ProjectDashboards
 
 
 - name: Start Grafana
