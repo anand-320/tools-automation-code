@@ -6,12 +6,12 @@
     src: jenkins.repo
     dest: /etc/yum.repos.d/jenkins.repo
 
-- name: install java
+- name: Install Java & Jenkins
   ansible.builtin.dnf:
     name:
-      -java-17-openjdk
-      -fontconfig
-      -jenkins
+      - java-17-openjdk
+      - fontconfig
+      - jenkins
     state: installed
 
 - name: Create init directory
