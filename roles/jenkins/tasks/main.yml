@@ -1,43 +1,10 @@
-- name: set prompt
-  ansible.builtin.shell: set-prompt jenkins
+- name: jenkins Setup
+  ansible.builtin.include_tasks:
+    file: jenkins-setup.yaml
+  when: jenkins_setup | bool
 
-- name: Copy Jenkins repo file
-  ansible.builtin.template:
-    src: jenkins.repo
-    dest: /etc/yum.repos.d/jenkins.repo
+- name: jenkins Setup
+  ansible.builtin.include_tasks:
+    file: jenkins-jobs.yaml
+  when: jenkins_jobs | bool
 
-- name: Install Java & Jenkins
-  ansible.builtin.dnf:
-    name:
-      - java-17-openjdk
-      - fontconfig
-      - jenkins
-    state: installed
-
-- name: Create init directory
-  ansible.builtin.file:
-    path: /var/lib/jenkins/init.groovy.d
-    state: directory
-
-- name: Copy init scripts
-  ansible.builtin.template:
-    src: "{{item}}.groovy"
-    dest: /var/lib/jenkins/init.groovy.d/{{item}}.groovy
-  loop:
-    - 01-wizard
-    - 02-admin-user
-    - 03-plugins
-
-- name: start jenkins server
-  ansible.builtin.systemd_service:
-    name: jenkins
-    state: restarted
-    enabled: yes
-
-- name: Create a jobs
-  community.general.jenkins_job:
-    config: "{{ lookup('file', 'templates/jobs/pipeline.xml') }}"
-    name: test
-    password: "{{secrets.jenkins_password}}"
-    url: http://jenkins-internal.janand.online:8080
-    user: "{{secrets.jenkins_user}}"
