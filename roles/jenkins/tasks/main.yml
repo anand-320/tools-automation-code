@@ -5,6 +5,6 @@
 
 - name: jenkins Setup
   ansible.builtin.include_tasks:
-    file: jenkins-jobs.yaml
+    file: jenkins-jobs.yml
   when: jenkins_jobs | bool
 
